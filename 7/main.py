@@ -7,8 +7,6 @@ fuel_cost = sum([abs(median - x) for x in positions])
 print(fuel_cost)
 
 #PART 2
-mu = sum(positions)//len(positions)
-fuel_cost1 = sum([(abs(x-(mu-1)) * (abs(x-(mu-1))+1)) // 2 for x in positions])
-fuel_cost2 = sum([(abs(x-mu) * (abs(x-mu)+1)) // 2 for x in positions])
-fuel_cost3 = sum([(abs(x-(mu+1)) * (abs(x-(mu+1))+1)) // 2 for x in positions])
-print(min(fuel_cost1, fuel_cost2, fuel_cost3))
+mean = sum(positions)/len(positions)
+fuel_costs = [sum([(abs(x-(mu)) * (abs(x-(mu))+1)) // 2 for x in positions]) for mu in range(int((mean-0.5)//1), int((mean+1.5)//1))]
+print(min(fuel_costs))
