@@ -1,18 +1,16 @@
+with open("input.txt") as f:
+    num_list = [int(line) for line in f]
+
 def count(offset=1):
-    
-    with open("input.txt", "r+") as f:
-        with open("input.txt", "r+") as g:  
-            count = 0
-            for i in range(0,offset):
-                next(f)
-                
-            for next_num in f:
-                last_num = next(g)
+    count = 0
+    for i in range(len(num_list) - offset):
+        if num_list[i + offset] > num_list[i]:
+            count+=1
+            
+    return(count)
 
-                if int(next_num) > int(last_num):
-                    count += 1
-                
-            print(count)
+#Part 1
+print(count(1))
 
-count(1)
-count(3)
+#Part 2
+print(count(3))
