@@ -1,9 +1,12 @@
 with open("input.txt") as f:
-    input_text = f.readlines()
+    coordinates, folds = set(), []
+    for line in f:
+        if line == "\n": break
+        coordinates.add(tuple(int(num) for num in line.split(",")))  
 
-split_ind = input_text.index("\n")
-coordinates = set((int(x), int(y)) for x,y in [line.split(",") for line in input_text[:split_ind]])
-folds = [(xy, int(val)) for xy, val in [line.split("fold along ")[1].split("=") for line in input_text[split_ind+1:]]]
+    for line in f:
+        xy, val = line[len("fold along "):].split("=")
+        folds.append((xy, int(val)))
 
 def fold_coordinates(coords, fold_xy, fold_val):
     new_coordinates = set()
